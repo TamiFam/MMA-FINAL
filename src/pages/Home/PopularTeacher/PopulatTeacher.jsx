@@ -14,7 +14,7 @@ const PopulatTeacher = () => {
   return (
     <div className='md:w-[80%] mx-auto my-36'>
     <div>
-        <h1 className='text-5xl font-bold text-center'>Our <span className='text-secondary'>Best</span> Instructors</h1>
+        <h1 className='text-5xl font-bold text-center  dark:text-white text-gray-800 '>Our <span className='text-secondary'>Best</span> Instructors</h1>
         <div className='w-[40%] text-center mx-auto'>
             <p className='text-gray-500'>Explore our Popular Classes . Here is some popular classes on How many student enrollled</p>
         </div>

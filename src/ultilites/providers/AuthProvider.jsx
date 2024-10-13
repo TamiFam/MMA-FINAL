@@ -4,6 +4,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { app } from '../../config/firebase.init'
 import { GoogleAuthProvider } from "firebase/auth";
 import axios from 'axios';
+import { getFirestore, doc, deleteDoc } from "firebase/firestore";
+
  export const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
@@ -80,6 +82,7 @@ const unsubscribe = onAuthStateChanged(auth,(user) => {
   setUser(user)
   console.log("User from Firebase:", user)
   if(user) {
+    
     axios.post('http://localhost:3000/api/set-token',{email: user.email, name: user.displayName})
     .then((data) =>{
       if(data.data.token) {
@@ -95,9 +98,18 @@ const unsubscribe = onAuthStateChanged(auth,(user) => {
 })
 return () => unsubscribe()
 },[])
+const deleteUserFromFirestore = async (id) => {
+  try {
+    const userDocRef = doc(db, "users", id);
+    await deleteDoc(userDocRef);
+  } catch (error) {
+    setError(error.code);
+    throw error;
+  }
+};
     
 
-  const contextValue = {user,SignUp,login,logout,updateUser,googleLogin,error, setError,loader,setLoader}
+  const contextValue = {user,SignUp,login,logout,updateUser,googleLogin,error, setError,loader,setLoader,deleteUserFromFirestore}
   return (
     <AuthContext.Provider value={contextValue}>
       {children}

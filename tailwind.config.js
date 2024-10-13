@@ -16,7 +16,9 @@ export default {
         'secondary': '#2E4CFF',
         'third' : '#6f42c1'
       },
-      
+      maxWidth: {
+        '400px': '400px',
+      }
     },
   },
   plugins: [],

@@ -1,11 +1,14 @@
 import { Switch } from '@mui/material';
 import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import {motion} from 'framer-motion'
 
 import photoUrl  from '../../assets/home/ghgh.jpg'
 import {FaBars} from 'react-icons/fa'
+import  { AuthContext } from '../../ultilites/providers/AuthProvider';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const navLinks = [
     {name: 'Home', route:'/'},
@@ -34,7 +37,7 @@ const [scrollPosition,setScrollPosition] = useState(0)
 const [isFixed, setIsFixed] = useState(false)
 const [isDarkMode, setIsDarkMode] = useState(false)
 const [navBg,setNavBg] = useState('bg-[#15151580]')
-const user = true
+const {logout, user} = useAuth()
   
   const toggleMobileMenu = () => {
     setIsMobailMenuOpen(!isMobailMenuOpen)
@@ -52,6 +55,7 @@ const user = true
     setIsHome(location.pathname === '/');
     setIsLogin(location.pathname === '/login');
     setIsFixed(location.pathname === '/register' || location.pathname === '/login');
+    
   }, [location]);
   useEffect(() => {
     const handleScroll = () => {
@@ -83,10 +87,34 @@ const user = true
         }
       
 
-    },[scrollPosition])
-    const handleLogout = () => {
+    },[scrollPosition, isHome, location.pathname])
+    const handleLogout = (e) => {
+      e.preventDefault()
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, loogut me!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            
+                Swal.fire({
+                    title: "Logged out!",
+                    text: "Logged out",
+                    icon: "success"
+                  });
+                 logout()
+                }
+            }).catch((error) => console.log(error))
+          
+        }
+      
+      
       console.log('logout')
-    }
+    
 //     console.log('isHome:', isHome);
 // console.log('navBg:', navBg);
 // console.log('isFixed:', isFixed);

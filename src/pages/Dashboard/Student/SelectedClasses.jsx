@@ -14,8 +14,8 @@ const SelectedClasses = () => {
     const [classes,setClasses] = useState([])
     const [paginateData,setPaginateData] = useState([])
     const [page,setPage] = useState(1)
-    const itemPerPage = 5
-    const totalPage = Math.ceil(classes.length / itemPerPage) + 1
+    const itemPerPage = 3
+    const totalPage = Math.ceil(classes.length / itemPerPage) 
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
 
@@ -31,6 +31,8 @@ const SelectedClasses = () => {
             setLoading(false)
         })
     },[])
+    
+    
                  {/*Подсчет цены в корзине */}
     const totalPrice = classes.reduce((acc,item)=> acc + parseInt(item.price), 0)
     const totalTax = totalPrice * 0.01
@@ -43,6 +45,15 @@ const SelectedClasses = () => {
         // console.log(item._id)
         // console.log(price)
     }
+    const redirect = () => {
+        navigate('/classes')
+    }
+    useEffect(() => {
+        const startIndex = (page - 1) * itemPerPage;
+        const endIndex = startIndex + itemPerPage;
+        setPaginateData(classes.slice(startIndex, endIndex));
+    }, [classes, page]);
+
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -78,7 +89,7 @@ const SelectedClasses = () => {
   return (
     <div >
         <div className='my-6 text-center'>
-            <h1 className='text-4xl font-cold'>My <span className='text-secondary'>Selected</span> classes</h1>
+            <h1 className='text-4xl font-bold'>My <span className='text-secondary'>Selected</span> <button className='bg-green-400 rounded-lg text-2xl' onClick={redirect}>classes</button></h1>
         </div>
         <div className='h-screen'>
         <div className='container mx-auto px-4'>
@@ -100,8 +111,8 @@ const SelectedClasses = () => {
                         {/*Table body */}
                         <tbody>
                             {
-                                classes.length === 0 ? <tr key="no-classes"><td colSpan='5' className='text-2xl font-bold'> No classes found </td></tr> 
-                                : classes.map((item,idx) => {
+                                paginateData.length === 0 ? <tr key="no-classes"><td colSpan='5' className='text-2xl font-bold'> No classes found </td></tr> 
+                                : paginateData.map((item,idx) => {
                                     const leftIdx = (page -1) * itemPerPage +idx +1
                                     return <tr key={item._id}>
                                         <td className='py-4'>{leftIdx}</td>
@@ -111,7 +122,7 @@ const SelectedClasses = () => {
                                                 <span>{item.name}</span>
                                             </div>
                                         </td>
-                                        <td className='py-4'>{item.price} rub</td>
+                                        <td className='py-4 '>{item.price} rub</td>
                                         <td className='py-4'> 
                                         <p className='text-green-700 text-sm'> 
                                             {moment(item.submitted).format("MMMM Do YYYY")}
@@ -125,9 +136,23 @@ const SelectedClasses = () => {
                                 })
                             }
                         </tbody>
+                        
                     </table>
+                    <div className='flex justify-center mt-4'>
+                                    {Array.from({ length: totalPage }, (_, i) => i + 1).map(p => (
+                                        <button
+                                            key={p}
+                                            className={`mx-1 px-3 py-1 rounded ${page === p ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                                            onClick={() => setPage(p)}
+                                        >
+                                            {p}
+                                        </button>
+                                    ))}
+                                </div>
+                    
                 </div>
             </div>
+            
 
              {/*Right div */}
             <div className='md:w-1/5 fixed right-3'>
@@ -156,11 +181,16 @@ const SelectedClasses = () => {
                     Checkout
                 </button>
                 </div>
+                
             </div>
         </div>
+        
         </div>
+       
         </div>
+        
     </div>
+    
   )
 }
 

@@ -49,7 +49,7 @@ const SingleClass = () => {
         if (cartItem && cartItem.classId === id) {
           const Toast =  Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "bottom-end",
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
@@ -86,7 +86,7 @@ const SingleClass = () => {
         const addToCartResponse = await axiosSecure.post('/add-to-cart', data);
         const Toast = await Swal.mixin({
           toast: true,
-          position: "top-end",
+          position: "bottom-end",
           showConfirmButton: false,
           timer: 2000,
           timerProgressBar: true,

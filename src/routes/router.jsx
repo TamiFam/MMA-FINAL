@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
-import Instructors from "../pages/Instructors/Instructors";
+
 import Classes from "../pages/Classes/Classes";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
@@ -15,7 +15,21 @@ import MyPaymentHistory from "../pages/Dashboard/Student/Payment/History/MyPayme
 
 import AsInstructor from "../pages/Dashboard/Student/Apply/AsInstructor";
 import Payment from "../pages/Dashboard/Student/Payment/History/Payment";
-import Pkoae from "../pages/Dashboard/Student/Payment/History/asdijia";
+import AdminCP from "../pages/Dashboard/Admins/AdminCP";
+import Instructors from "../pages/instructors/Instructors";
+import InstructorCp from "../pages/Dashboard/instructor/instructorCp";
+
+import MyClasses from "../pages/Dashboard/instructor/MyClasses";
+import MyPendings from "../pages/Dashboard/instructor/MyPendings";
+import ApprovedCourses from "../pages/Dashboard/instructor/ApprovedCourses";
+import AdminStats from "../pages/Dashboard/Admins/AdminStats";
+import ManageClasses from "../pages/Dashboard/Admins/ManageClasses";
+import AddClass from "../pages/Dashboard/instructor/AddClass";
+import ManageUsers from "../pages/Dashboard/Admins/ManageUsers";
+import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
+
+
+
 
 
  export const router = createBrowserRouter([
@@ -86,7 +100,49 @@ import Pkoae from "../pages/Dashboard/Student/Payment/History/asdijia";
         path: 'user/payment',
         element: <Payment/>
       },
+      //instructor routes
+      {
+        path: 'instructor-cp',
+        element: <InstructorCp/>
+      },
+      {
+        path: 'add-class',
+        element: <AddClass/>
+      },
+      {
+        path: 'my-classes',
+        element: <MyClasses/>
+      },
+      {
+        path: 'my-pending',
+        element: <MyPendings/>
+      },
+      { 
+        path: 'my-approved',
+        element: <ApprovedCourses/>
+      },
+      //admin routes
+      {
+        path: 'admin-home',
+        element: <AdminCP/>
+      },
+      {
+        path: 'manage-class',
+        element: <ManageClasses/>
+      },
+      {
+        path: 'manage-users',
+        element: <ManageUsers/>
+      },
+      {
+        path: 'update-user/:id',
+        element: <UpdateUser/>,
+        loader: ({params}) => fetch(`http://localhost:3000/users/${params.id}`)
+      },
       
+      
+      
+      AdminStats
     ]
   }
 

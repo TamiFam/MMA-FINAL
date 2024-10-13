@@ -14,26 +14,32 @@ const Classes = () => {
   const role = currentUser?.role;
   const [enrolledClasses, setEnrolledClasses] = useState([]);
   const [hoveredCard, setHoveredCard] = useState(null);
-const navigate = useNavigate()
-
+  
+  const navigate = useNavigate()
   const axiosFetch = useAxiosFetch();
   const axiosSecure = useAxiosSecure();
+  
 
   const handleHover = (index) => {
+    
     setHoveredCard(index);
   };
 
   useEffect(() => {
     axiosFetch.get('/classes')
-      .then(res => setClasses(res.data))
+      .then((res) => {
+        setClasses(res.data)
+        // console.log(res.data)
+      })
       .catch(err => console.log(err));
   }, []);
 
   const handleSelect = async (id) => {
+    // console.log("Тип данных id:", typeof id);
   if (!currentUser) {
     const Toast =  Swal.mixin({
       toast: true,
-      position: "top-center",
+      position: "bottom-end",
       showConfirmButton: false,
       timer: 1000,
       timerProgressBar: true,
@@ -43,7 +49,7 @@ const navigate = useNavigate()
       }
     });
     await Toast.fire({
-      icon: "pending",
+      icon: "success",
       title: "Пожалуйста залогинься"
     });
     
@@ -51,10 +57,7 @@ const navigate = useNavigate()
   }
 
   try {
-    // Fetch enrolled classes
-    const enrolledResponse = await axiosSecure.get(`/enrolled-classes/${currentUser?.email}`);
-    const enrolledClasses = enrolledResponse.data;
-    setEnrolledClasses(enrolledClasses);
+ 
 
     // Check if the class is already in the cart
     const cartResponse = await axiosSecure.get(`/cart-item/${id}?email=${currentUser?.email}`);
@@ -63,7 +66,7 @@ const navigate = useNavigate()
     if (cartItem && cartItem.classId === id) {
       const Toast = await Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: "bottom-end",
         showConfirmButton: false,
         timer: 1000,
         timerProgressBar: true,
@@ -78,16 +81,30 @@ const navigate = useNavigate()
       });
       return
     }
-
+   // Fetch enrolled classes
+   const enrolledResponse = await axiosSecure.get(`/enrolled-item/${id}?email=${currentUser?.email}`);
+   const enrolledClasses = enrolledResponse.data;
+   setEnrolledClasses(enrolledClasses)
+   
+   
     // Check if the class is already enrolled
-    if (enrolledClasses.find(item => item.classes._id === id)) {
-      await Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Уже записан",
-        footer: '<a href="#">Why do I have this issue?</a>'
+    if (enrolledClasses && enrolledClasses.classId ===  id) {
+      const Toast = await Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
       });
-      return;
+      await Toast.fire({
+        icon: "error",
+        title: "Уже Записан..."
+      });
+      return
     }
 
     // Add the class to the cart
@@ -100,7 +117,7 @@ const navigate = useNavigate()
     const addToCartResponse = await axiosSecure.post('/add-to-cart', data);
     const Toast = await Swal.mixin({
       toast: true,
-      position: "top-end",
+      position: "bottom-end",
       showConfirmButton: false,
       timer: 1000,
       timerProgressBar: true,
@@ -113,8 +130,36 @@ const navigate = useNavigate()
       icon: "success",
       title: "Signed in successfully"
     });
+    await Swal.fire({
+      title: "Go to my-selected!",
+      html: `
+        <style>
+          .swal2-styled.swal2-confirm {
+            background-color: #4caf50 !important;
+            border: none !important;
+            border-radius: 5px !important;
+            padding: 10px 20px !important;
+            font-size: 16px !important;
+            transition: background-color 0.3s ease !important;
+          }
+          .swal2-styled.swal2-confirm:hover {
+            background-color: #43a047 !important;
+          }
+        </style>
+        <a href="/dashboard/my-selected" class="swal2-styled swal2-confirm">Go to My Selected</a>
+      `,
+      toast: true, // Используем toast режим
+      position: "bottom-left", // Устанавливаем позицию в нижний правый угол
+      showConfirmButton: false,
+      timer: 5000,
+      
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
 
-    console.log(addToCartResponse.data);
+    // console.log(addToCartResponse.data);
 
   } catch (error) {
     console.error('Error handling class selection:', error);
@@ -124,6 +169,8 @@ const navigate = useNavigate()
       text: "Something went wrong!",
       footer: '<a href="#">Why do I have this issue?</a>'
     });
+      
+  
     return
   }
 };
@@ -140,7 +187,8 @@ const navigate = useNavigate()
         <h1 className='text-4xl font-bold text-center text-secondary'>Classes</h1>
       </div>
       <div className='my-16 w-[90%] mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
-        {classes.slice(0, 5).map((cls, index) => (
+        {classes.slice(0, 15).map((cls, index) => (
+          
           <div
             key={index}
             className={`relative hover:-translate-y-2 duration-150 hover:ring-[2px] hover:ring-secondary w-64 h-[350px] mx-auto ${cls.availableSeats < 1 ? "bg-red-300" : "bg-white"} dark:bg-slate-600 rounded-lg shados-lg overflow-hidden cursor-pointer`}
@@ -161,7 +209,7 @@ const navigate = useNavigate()
               >
                 <div className='absolute inset-0 flex items-center justify-center'>
                   <button onClick={() => handleSelect(cls._id)} title={role === 'admin' || role === 'instructor' ? 'Instructor/Admin cannot select' : cls.availableSeats < 1 ? 'No seat Available' : 'You can select Classes'}
-                    disabled={role === 'admin' || role === 'instructor' || cls.availableSeats < 1}
+                    disabled={role === 'admin' || role === 'instructor' || cls.availableSeats < 1  }
                     className='px-4 py-2 text-white disabled:bg-red-300 bg-secondary duration-300 rounded hover:bg-red-700'>
                     Add to card
                   </button>
