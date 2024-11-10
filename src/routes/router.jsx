@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
-
 import Classes from "../pages/Classes/Classes";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/Register";
@@ -12,13 +11,11 @@ import StudentCP from "../pages/Dashboard/Student/StudentCP";
 import EnrolledClasses from "../pages/Dashboard/Student/Enroll/EnrolledClasses";
 import SelectedClasses from "../pages/Dashboard/Student/SelectedClasses";
 import MyPaymentHistory from "../pages/Dashboard/Student/Payment/History/MyPaymentHistory";
-
 import AsInstructor from "../pages/Dashboard/Student/Apply/AsInstructor";
 import Payment from "../pages/Dashboard/Student/Payment/History/Payment";
 import AdminCP from "../pages/Dashboard/Admins/AdminCP";
 import Instructors from "../pages/instructors/instructors";
 import InstructorCp from "../pages/Dashboard/instructor/instructorCp";
-
 import MyClasses from "../pages/Dashboard/instructor/MyClasses";
 import MyPendings from "../pages/Dashboard/instructor/MyPendings";
 import ApprovedCourses from "../pages/Dashboard/instructor/ApprovedCourses";
@@ -28,124 +25,111 @@ import AddClass from "../pages/Dashboard/instructor/AddClass";
 import ManageUsers from "../pages/Dashboard/Admins/ManageUsers";
 import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
 
-
-
-
-
- export const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />
       },
       {
         path: "instructors",
-        element: <Instructors/>
+        element: <Instructors />
       },
       {
         path: "classes",
-        element: <Classes/>
-      }, 
+        element: <Classes />
+      },
       {
         path: "/login",
-        element: <Login/>
-      },{
+        element: <Login />
+      },
+      {
         path: "/register",
-        element: <Register/>
+        element: <Register />
       },
       {
         path: "/class/:id",
-        element: <SingleClass/>,
-        loader: ({params}) => fetch(`https://mma-server-2.onrender.com/class/${params.id}`)
+        element: <SingleClass />,
+        loader: ({ params }) => fetch(`https://mma-server-2.onrender.com/class/${params.id}`)
       },
-      
-      
     ]
-    
   },
   {
     path: "/dashboard",
-    element: <DashBoardLayout/>,
+    element: <DashBoardLayout />,
     children: [
       {
-        index:true,
-        element: <Dashboard/>
+        index: true,
+        element: <Dashboard />
       },
       // students routes
       {
         path: 'student-cp',
-        element: <StudentCP/>
+        element: <StudentCP />
       },
       {
         path: 'enrolled-class',
-        element: <EnrolledClasses/>
+        element: <EnrolledClasses />
       },
       {
         path: 'my-selected',
-        element: <SelectedClasses/>
+        element: <SelectedClasses />
       },
       {
         path: 'my-payments',
-        element: <MyPaymentHistory/>
+        element: <MyPaymentHistory />
       },
       {
         path: 'apply-instructor',
-        element: <AsInstructor/>
+        element: <AsInstructor />
       },
-      
       {
         path: 'user/payment',
-        element: <Payment/>
+        element: <Payment />
       },
-      //instructor routes
+      // instructor routes
       {
         path: 'instructor-cp',
-        element: <InstructorCp/>
+        element: <InstructorCp />
       },
       {
         path: 'add-class',
-        element: <AddClass/>
+        element: <AddClass />
       },
       {
         path: 'my-classes',
-        element: <MyClasses/>
+        element: <MyClasses />
       },
       {
         path: 'my-pending',
-        element: <MyPendings/>
+        element: <MyPendings />
       },
-      { 
+      {
         path: 'my-approved',
-        element: <ApprovedCourses/>
+        element: <ApprovedCourses />
       },
-      //admin routes
+      // admin routes
       {
         path: 'admin-home',
-        element: <AdminCP/>
+        element: <AdminCP />
       },
       {
         path: 'manage-class',
-        element: <ManageClasses/>
+        element: <ManageClasses />
       },
       {
         path: 'manage-users',
-        element: <ManageUsers/>
+        element: <ManageUsers />
       },
       {
         path: 'update-user/:id',
-        element: <UpdateUser/>,
-        loader: ({params}) => fetch(`https://mma-server-2.onrender.com/users/${params.id}`)
+        element: <UpdateUser />,
+        loader: ({ params }) => fetch(`https://mma-server-2.onrender.com/users/${params.id}`)
       },
-      
-      
-      
       AdminStats
     ]
   }
-
- 
-
 ]);
