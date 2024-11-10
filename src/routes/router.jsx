@@ -16,7 +16,7 @@ import MyPaymentHistory from "../pages/Dashboard/Student/Payment/History/MyPayme
 import AsInstructor from "../pages/Dashboard/Student/Apply/AsInstructor";
 import Payment from "../pages/Dashboard/Student/Payment/History/Payment";
 import AdminCP from "../pages/Dashboard/Admins/AdminCP";
-import Instructors from "../pages/instructors/Instructors";
+import Instructors from "../pages/instructors/instructors";
 import InstructorCp from "../pages/Dashboard/instructor/instructorCp";
 
 import MyClasses from "../pages/Dashboard/instructor/MyClasses";
