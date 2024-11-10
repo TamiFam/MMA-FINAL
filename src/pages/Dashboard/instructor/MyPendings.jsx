@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyPendings = () => {
   return (
-    <div>MyPendings</div>
+    <div className='text-2xl text-center text-secondary'>MyPendings</div>
   )
 }
 
