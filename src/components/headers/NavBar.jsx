@@ -74,7 +74,8 @@ const {logout, user} = useAuth()
     useEffect(()=> {
       
   // console.log('isHome:', isHome);
-      if(scrollPosition > 100) {
+      if(scrollPosition > 890) {
+        
         if(isHome) {
           setNavBg('bg-white backdrop-filter backdrop-blur-xl bg-opacity-0 dark:text-white text-black')
         } else {
@@ -84,6 +85,7 @@ const {logout, user} = useAuth()
           setNavBg
           (`${isHome || location.pathname === '/' ? 'bg-transparent' : 'bg-white dark:bg-black'}
           dark:text-white text-white`)
+          
         }
       
 
@@ -109,11 +111,11 @@ const {logout, user} = useAuth()
                  logout()
                 }
             }).catch((error) => console.log(error))
-          
+            console.log('logout')
         }
       
       
-      console.log('logout')
+      
     
 //     console.log('isHome:', isHome);
 // console.log('navBg:', navBg);
@@ -123,21 +125,21 @@ const {logout, user} = useAuth()
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     transition={{duration: 1.5}}
-    className={`${isHome ? navBg : 'bg-white dark:bg-black backdrop-blur-2xl'} ${isFixed ? 'static' : 'fixed'} top-0 transition-colors duration-500 ease-in-out w-full z-10`}>
+    className={`${isHome ? navBg : 'bg-white dark:bg-black backdrop-blur-2xl dark:text-white text-black'} ${isFixed ? 'static' : 'fixed'} top-0 transition-colors duration-500 ease-in-out w-full z-10`}>
       
       <div className="lg:w-[95%] mx-auto sm:px-6 lg:px-6">
-        <div className="px-4 py-4 flex items-center justify-between">
-          {/* logo */}
-          <div onClick={() => navigate('/')} className='flex-shrink-0 cursor-pointer pl-7 md:p-0 flex items-center'>
-            <div>
+      <div className="px-4 py-4 flex items-center justify-between">
+        {/* logo */}
+        <div onClick={() => navigate('/')} className='flex-shrink-0 cursor-pointer pl-7 md:p-0 flex items-center'>
+          <div>
             <h1 className="text-2xl inline-flex gap-3 items-center font-bold ">
-              YogaMaster <img src="/yoga-logo.png" className="w-8 h-8" />
+              School MMA <img src="/mma-logo-5.png" className="w-10 h-10 " />
             </h1>
             <p className="font-bold text-[13px] tracking-[8px]">
-              Quick Explore{" "}
+            TRAIN MORE{" "}
             </p>
-            </div>
           </div>
+        </div>
           {/* mobile menu icons */}
 
     <div className='md:hidden flex items-center'>
@@ -232,17 +234,32 @@ const {logout, user} = useAuth()
                 
                 }  
                 {
-                  user && <li><NavLink onClick={handleLogout} className={'font-bold px-3 py-2 bg-secondary text-white rounded-xl'}>
+                  user && <li><NavLink onClick={handleLogout} className={() =>             // Лишнее так как DashBoard перенаправляет срзу на другую страницу и не видно css свойств активных ссылок //
+                  `${
+                          navBg.includes("bg-transparent")
+                            ? "text-white"
+                            : "text-black dark:text-white"
+                        }
+                  } hover:text-secondary duration-300 font-bold`
+                } >
                     Logout</NavLink></li>
                 }
                 {/* color toggle */}
                 <li>
                   <ThemeProvider theme={theme}>
-                    <div className="flex flex-col justify-center items-center">
-                      <Switch onChange={() => setIsDarkMode(!isDarkMode)} />
-                      <h1 className="text-8px">Light/Dark</h1>
-                
-                    </div>
+                  <div className={`flex flex-col justify-center items-center ${isDarkMode ? 'dark' : ''}`}>
+      <Switch
+        checked={isDarkMode}
+        onChange={() => setIsDarkMode(!isDarkMode)}
+        className={`${isDarkMode ? 'bg-transporent' : 'bg-transporent'} relative inline-flex items-center h-6 rounded-lg w-5`}
+      >
+       
+        <span
+          className={`${isDarkMode ? 'translate-x-6' : 'translate-x-1'} inline-block w-2 h-2 transform bg-black rounded-lg`}
+        />
+      </Switch>
+      
+    </div>
                   </ThemeProvider>
                 </li>
               </ul>

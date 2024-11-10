@@ -29,16 +29,16 @@ const Instructors = () => {
       {
         instructors?.slice(0,4).map((instructor,i) =>(
           <div  
-          
+          key={i}
           className='flxe dark:text-white hover:-translate-y-2 duration-200 cursor-pointer 
           flex-col shadow-md py-8 px-10 md:px-8 rounded-md'>
             <div  className='flex-col flex gap-6 md:gap-8'>
               <img className='rounded-full border-4 border-gray-300 h-24 w-24 mx-auto' 
-              src={instructor.photoUrl || `${img}` } alt="" />
+              src={instructor.photoURL || `${img}` } alt="" />
               <div className='flex flex-col text-center'>
               <p className='font-medium text-lg dark:text-white text-gray-800'>{instructor?.instructor?.name}</p>
              <p className='text-gray-500 whitespace-nowrap'>Instructor</p>
-             <p className='text-gray-500 mb-4 whitespace-nowrap'>Address: {instructor?.address}</p>
+             <p className='text-gray-500 mb-4 whitespace-nowrap'>Phone: {instructor?.phone}</p>
              <p className='text-gray-500 mb-4 whitespace-nowrap'>Email: {instructor?.email}</p>
               </div>
             </div>

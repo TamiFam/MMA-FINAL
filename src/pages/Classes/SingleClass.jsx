@@ -108,10 +108,10 @@ const SingleClass = () => {
     };
   
     return (
-      <div className='font-gilroy font-medium text-gray dark:text-white text-lg leading-[27px] w-[90%] mx-auto'>
-        <div className='breadcrumbs bg-primary py-20 mt-20 section-padding bg-cover bg-center bg-no-repeat'>
+      <div className='font-gilroy font-medium text-gray dark:text-white text-lg leading-[27px]  w-[90%] mx-auto '>
+        <div className='breadcrumbs bg-gray-200 py-20 mt-20 section-padding bg-cover bg-center bg-no-repeat rounded-lg '>
           <div className='container text-center'>
-            <h2 className='text-center'>Courses details</h2>
+            <h2 className='text-center font-bold text-4xl gap-4'>{course.name}</h2>
           </div>
         </div>
   
@@ -150,18 +150,18 @@ const SingleClass = () => {
                 </div>
   
                 <div className='nav-tab-wrapper mt-12'>
-                  <ul id='tabs-nav' className='course-tab mb-8'>
+                  <ul id='tabs-nav' className='course-tab mb-8 flex gap-4'>
                     <li className='active'>
-                      <a href="#tab1">Overview</a>
+                      <a href="#tab1" className=' text-black bg-green-400 '>Overview</a>
                     </li>
                     <li>
-                      <a href="#tab2">Carriculum</a>
+                      <a href="#tab2" className='bg-purple-400'>Carriculum</a>
                     </li>
                     <li>
-                      <a href="#tab3">Instructor</a>
+                      <a href="#tab3"  className='bg-yellow-400'>Instructor</a>
                     </li>
                     <li>
-                      <a href="#tab4">Reviews</a>
+                      <a href="#tab4"  className='bg-blue-400'>Reviews</a>
                     </li>
                   </ul>
                   <div id='tabs-content'>
@@ -275,7 +275,7 @@ const SingleClass = () => {
               <div className='course-details-sidebar'>
                 <div className='course-price bg-white p-6 rounded-md shadow-md'>
                   <div className='price text-2xl font-bold mb-4'>
-                    <span className='text-primary'>$</span>{course.price}
+                    <span className='text-primary'></span>{course.price} RUB
                     
                   </div>
                   <div className='flex justify-center'>

@@ -51,6 +51,8 @@ const ManageUsers = () => {
         setPaginateData(currentData)
         // console.log(currentData)
       }, [page, users])
+
+      
   return (
     <div>
     <h1 className='text-4xl text-secondary font-bold text-center my-10'>Manage

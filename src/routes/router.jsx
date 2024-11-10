@@ -59,7 +59,7 @@ import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
       {
         path: "/class/:id",
         element: <SingleClass/>,
-        loader: ({params}) => fetch(`http://localhost:3000/class/${params.id}`)
+        loader: ({params}) => fetch(`https://mma-server-2.onrender.com/class/${params.id}`)
       },
       
       
@@ -137,7 +137,7 @@ import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
       {
         path: 'update-user/:id',
         element: <UpdateUser/>,
-        loader: ({params}) => fetch(`http://localhost:3000/users/${params.id}`)
+        loader: ({params}) => fetch(`https://mma-server-2.onrender.com/users/${params.id}`)
       },
       
       

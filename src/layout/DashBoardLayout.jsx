@@ -99,7 +99,7 @@ if(isLoading) {
       <div className={`${open ? "w-72 overflow-y-auto" : "w-[90px] overflow-auto"} bg-white h-screen p-5 md:block hidden pt-8 relative
       duration-300`}>
         <div className='flex gap-x-4 items-center'>
-          <img  onClick={() => setOpen(!open)} src="/yoga-logo.png" alt="" className={`cursor-pointer h-[40px] duration-500 ${open && "rotate-[350deg]"}`}/>
+          <img  onClick={() => setOpen(!open)} src="/mma-logo-5.png" alt="" className={`cursor-pointer h-[40px] duration-500 ${open && "rotate-[350deg]"}`}/>
           <Link to ='/'>
           <h1   className={`text-dark-primary cursor-pointer fone-bold origin-left text-xl
            duration-200 ${!open && 'scale-0'}`}>YogaMaster</h1>

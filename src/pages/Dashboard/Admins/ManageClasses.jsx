@@ -13,16 +13,20 @@ const ManageClasses = () => {
   const [paginateData, setPaginateData] = useState([])
   const itemPerPage = 3
 
-  const handleApprove = (id)  => {
+  const handleApprove = (id,status)  => {
+    if( status === 'approved') {
+      alert('allready approved')
+      return 
+    } else {
     // Логика для одобрения класса
     axiosSecure.put(`/change-status/${id}`, {status: 'approved'}).then(res => {
-      // console.log(res.data)
+      
       alert('Approved')
       const updateClass = classes.map(cls => cls._id === id ? {...cls, status: 'approved'} :cls)
       setClasses(updateClass)
     }).catch(err => {console.log(err)})
   }
-
+  }
   const handleReject =   (id)  => {
     // Логика для отклонения класса
     Swal.fire({
@@ -128,7 +132,7 @@ const ManageClasses = () => {
                             <td className='whitespace-pre-wrap px-6 py-4'>
                               
                               <button
-                                onClick={() => handleApprove(cls._id)}
+                                onClick={() => handleApprove(cls._id, cls.status)}
                                 className='text-[12px] cursor-pointer disabled:bg-green-700 bg-green-700 py-1 rounded-md px-2 text-white mr-4'
                               >
                                 Approve
