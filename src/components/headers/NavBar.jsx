@@ -147,6 +147,120 @@ const {logout, user} = useAuth()
 <FaBars className='h-6 w-6 hover:text-primary'/>
       </button>
     </div>
+    {isMobailMenuOpen && (
+            <div className='md:hidden absolute top-16 right-0   shadow-lg p-4'>
+              <ul className='space-y-4'>
+                {navLinks.map((link) => (
+                  <li key={link.route}>
+                    <NavLink
+                      to={link.route}
+                      className={({ isActive }) =>
+                        `font-bold ${
+                          isActive
+                            ? "text-secondary"
+                            : `${
+                                navBg.includes("bg-transparent")
+                                  ? "text-white"
+                                  : "text-black dark:text-white"
+                              }`
+                        } hover:text-secondary duration-300`
+                      }
+                    >
+                      {link.name}
+                    </NavLink>
+                  </li>
+                ))}
+                {user ? null : isLogin ? (
+                  <li>
+                    <NavLink
+                      to="/register"
+                      className={({ isActive }) =>
+                        `font-bold ${
+                          isActive
+                            ? "text-secondary"
+                            : `${
+                                navBg.includes("bg-transparent")
+                                  ? "text-white"
+                                  : "text-black dark:text-white"
+                              }`
+                        } hover:text-secondary duration-300`
+                      }
+                    >
+                      Register
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className={({ isActive }) =>
+                        `font-bold ${
+                          isActive
+                            ? "text-secondary"
+                            : `${
+                                navBg.includes("bg-transparent")
+                                  ? "text-white"
+                                  : "text-black dark:text-white"
+                              }`
+                        } hover:text-secondary duration-300`
+                      }
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                )}
+                {user && (
+                  <li>
+                    <NavLink to='/dashboard' className={({ isActive }) =>
+                      `font-bold ${
+                        isActive
+                          ? "text-secondary"
+                          : `${
+                              navBg.includes("bg-transparent")
+                                ? "text-white"
+                                : "text-black dark:text-white"
+                            }`
+                      } hover:text-secondary duration-300`
+                    }>DashBoard</NavLink>
+                  </li>
+                )}
+                {user && (
+                  <li>
+                    <img src={photoUrl} className='h-[40px] rounded-full w-[40px]'/>
+                  </li>
+                )}
+                {user && (
+                  <li>
+                    <NavLink onClick={handleLogout} className={() =>
+                      `${
+                        navBg.includes("bg-transparent")
+                          ? "text-white"
+                          : "text-black dark:text-white"
+                      }
+                      hover:text-secondary duration-300 font-bold`
+                    }>
+                      Logout
+                    </NavLink>
+                  </li>
+                )}
+                <li>
+                  <ThemeProvider theme={theme}>
+                    <div className={`flex flex-col justify-center items-center ${isDarkMode ? 'dark' : ''}`}>
+                      <Switch
+                        checked={isDarkMode}
+                        onChange={() => setIsDarkMode(!isDarkMode)}
+                        className={`${isDarkMode ? 'bg-transporent' : 'bg-transporent'} relative inline-flex items-center h-6 rounded-lg w-5`}
+                      >
+                        <span
+                          className={`${isDarkMode ? 'translate-x-6' : 'translate-x-1'} inline-block w-2 h-2 transform bg-black rounded-lg`}
+                        />
+                      </Switch>
+                    </div>
+                  </ThemeProvider>
+                </li>
+              </ul>
+            </div>
+          )}
           {/* Navigational links */}
           <div className="hidden md:block text-black dark:text-white">
             <div className="flex">
