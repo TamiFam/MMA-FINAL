@@ -4,7 +4,10 @@ import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import useUser from '../../../../../hooks/useUser';
 
 const CheckoutPayments = ({ cartItm, price }) => {
-  const URL = `https://mma-server-2.onrender.com/payment-info?${cartItm && `classId=${cartItm}`}`;
+  const URL = `
+https://mma-server-2.onrender.com
+
+/payment-info?${cartItm && `classId=${cartItm}`}`;
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { currentUser, isLoading } = useUser();

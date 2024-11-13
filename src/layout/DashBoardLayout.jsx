@@ -113,7 +113,7 @@ if(isLoading) {
                role ==="admin" &&  adminNavItems.map((menuItem, index) => (
                 <li key={index} className='mb-2'>
                  <NavLink to={menuItem.to} className={({ isActive }) => `flex flex-row items-center ${isActive ? "bg-red-500 text-white" : "text-[#413F44]"}
-                  duration-150 rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-white font-bold text-sm gap-x-4 whitespace-nowrap`}>
+                  duration-150 rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-white font-bold text-sm gap-x-4 whitespace-nowrap md:w`}>
                   {menuItem.icon}
                   <span className={`${!open && 'hidden'} origin-left duration-200` }>{menuItem.label}</span>
                   </NavLink>

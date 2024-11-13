@@ -7,6 +7,7 @@ const AdminCP = () => {
   const {currentUser} = useUser()
   const axiosFetch = useAxiosFetch()
   const [users, setUsers] = useState([])
+  const role = currentUser?.role
   useEffect(() => {
     axiosFetch.get(`/users`)
     .then(res => {
@@ -18,11 +19,10 @@ const AdminCP = () => {
     
   },[])
   return (
-    <div>
+    <div className=''>
       
-     
-      <h1>Welcome Back, <span className='text-secondary'>{currentUser.name}</span></h1>
-      <AdminStats users={users}/>
+      <h1>Welcome Back, <span className='text-secondary'>{currentUser.name}<span className='text-black'> [{role}]</span></span></h1>
+      <AdminStats users={users} />
     </div>
   )
 }

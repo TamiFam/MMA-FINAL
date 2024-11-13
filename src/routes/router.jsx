@@ -53,7 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/class/:id",
         element: <SingleClass />,
-        loader: ({ params }) => fetch(`https://mma-server-2.onrender.com/class/${params.id}`)
+        loader: ({ params }) => fetch(`
+https://mma-server-2.onrender.com
+
+/class/${params.id}`)
       },
     ]
   },
@@ -127,7 +130,10 @@ export const router = createBrowserRouter([
       {
         path: 'update-user/:id',
         element: <UpdateUser />,
-        loader: ({ params }) => fetch(`https://mma-server-2.onrender.com/users/${params.id}`)
+        loader: ({ params }) => fetch(`
+https://mma-server-2.onrender.com
+
+/users/${params.id}`)
       },
       AdminStats
     ]

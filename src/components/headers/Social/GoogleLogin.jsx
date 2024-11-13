@@ -28,7 +28,10 @@ const GoogleLogin = () => {
 
                 if (user.email && user.displayName) {
                     const token = localStorage.getItem('token');
-axios.post('https://mma-server-2.onrender.com/new-user', userImp, {
+axios.post('
+https://mma-server-2.onrender.comnew-user'
+
+, userImp, {
     headers: {
         'Authorization': `Bearer ${token}`
     }

@@ -3,7 +3,10 @@ import axios from "axios";
 
 const useAxiosFetch = () => {
   const axiosInstance = axios.create({
-    baseURL: 'https://mma-server-2.onrender.com',
+    baseURL: '
+https://mma-server-2.onrender.com',
+
+
   });
 
   useEffect(() => {

@@ -36,7 +36,10 @@ const Register = () => {
             address: data.address
           }
           if(user.email && user.displayName) {
-            return axios.post('https://mma-server-2.onrender.com/new-user', userImp).then(()=> {
+            return axios.post('
+https://mma-server-2.onrender.comnew-user'
+
+, userImp).then(()=> {
               navigate('/')
               return "Registration done"
             }).catch((err)=> {
