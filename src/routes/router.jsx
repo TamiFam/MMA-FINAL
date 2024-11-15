@@ -24,6 +24,7 @@ import ManageClasses from "../pages/Dashboard/Admins/ManageClasses";
 import AddClass from "../pages/Dashboard/instructor/AddClass";
 import ManageUsers from "../pages/Dashboard/Admins/ManageUsers";
 import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
+import ManageAplication from "../pages/Dashboard/Admins/ManageAplication";
 
 export const router = createBrowserRouter([
   {
@@ -53,8 +54,7 @@ export const router = createBrowserRouter([
       {
         path: "/class/:id",
         element: <SingleClass />,
-        loader: ({ params }) => fetch(`
-https://mma-server-2.onrender.com
+        loader: ({ params }) => fetch(`http://localhost:3000/
 
 /class/${params.id}`)
       },
@@ -130,10 +130,13 @@ https://mma-server-2.onrender.com
       {
         path: 'update-user/:id',
         element: <UpdateUser />,
-        loader: ({ params }) => fetch(`
-https://mma-server-2.onrender.com
+        loader: ({ params }) => fetch(`http://localhost:3000/
 
 /users/${params.id}`)
+      },
+      {
+        path: 'manage-application',
+        element: <ManageAplication />
       },
       AdminStats
     ]
