@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import useUser from '../../../../../hooks/useUser';
 
 const CheckoutPayments = ({ cartItm, price }) => {
-  const URL = `http://localhost:3000
+  const URL = `https://mma-server-x3l2.onrender.com
 
 /payment-info?${cartItm && `classId=${cartItm}`}`;
   const navigate = useNavigate();

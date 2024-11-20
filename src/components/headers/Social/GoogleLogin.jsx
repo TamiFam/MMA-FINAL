@@ -28,7 +28,7 @@ const GoogleLogin = () => {
 
                 if (user.email && user.displayName) {
                     const token = localStorage.getItem('token');
-axios.post(`http://localhost:3000/new-user`
+axios.post(`https://mma-server-x3l2.onrender.com/new-user`
 
 , userImp, {
     headers: {

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useAxiosFetch = () => {
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://mma-server-x3l2.onrender.com',
 
 
   });

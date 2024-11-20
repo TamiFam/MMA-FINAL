@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
       {
         path: "/class/:id",
         element: <SingleClass />,
-        loader: ({ params }) => fetch(`http://localhost:3000/
+        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com/
 
 /class/${params.id}`)
       },
@@ -130,7 +130,7 @@ export const router = createBrowserRouter([
       {
         path: 'update-user/:id',
         element: <UpdateUser />,
-        loader: ({ params }) => fetch(`http://localhost:3000/
+        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com/
 
 /users/${params.id}`)
       },
