@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate()
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'https://mma-server-x3l2.onrender.com/',
 
 
     

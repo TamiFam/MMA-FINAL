@@ -83,7 +83,7 @@ const unsubscribe = onAuthStateChanged(auth,(user) => {
   console.log("User from Firebase:", user)
   if(user) {
     
-    axios.post(`http://localhost:3000/api/set-token`
+    axios.post(`https://mma-server-x3l2.onrender.com/api/set-token`
 
 ,{email: user.email, name: user.displayName})
     .then((data) =>{
