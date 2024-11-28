@@ -25,6 +25,7 @@ import AddClass from "../pages/Dashboard/instructor/AddClass";
 import ManageUsers from "../pages/Dashboard/Admins/ManageUsers";
 import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
 import ManageAplication from "../pages/Dashboard/Admins/ManageAplication";
+import FeedbackUser from "../pages/Dashboard/Admins/feedbackUser";
 
 export const router = createBrowserRouter([
   {
@@ -36,11 +37,11 @@ export const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "instructors",
+        path: "/instructors",
         element: <Instructors />
       },
       {
-        path: "classes",
+        path: "/classes",
         element: <Classes />
       },
       {
@@ -54,7 +55,7 @@ export const router = createBrowserRouter([
       {
         path: "/class/:id",
         element: <SingleClass />,
-        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com/
+        loader: ({ params }) => fetch(`http://localhost:3000/
 
 /class/${params.id}`)
       },
@@ -128,9 +129,13 @@ export const router = createBrowserRouter([
         element: <ManageUsers />
       },
       {
+        path: 'feedback-user',
+        element: <FeedbackUser />
+      },
+      {
         path: 'update-user/:id',
         element: <UpdateUser />,
-        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com/
+        loader: ({ params }) => fetch(`http://localhost:3000
 
 /users/${params.id}`)
       },

@@ -82,6 +82,7 @@ const ManageUsers = () => {
                       </tr>
                     ) : (
                         paginateData.map((user, idx) => (
+                          
                         <tr key={user._id} className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600'>
                           
                           <td className='whitespace-pre-wrap px-6 py-4 font-bold'>

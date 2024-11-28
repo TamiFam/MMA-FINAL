@@ -13,7 +13,7 @@ const useUser = () => {
         return null;
       }
       try {
-        const res = await axiosSecure.get(`/user/${user.email}`);
+        const res = await axiosSecure.get(`http://localhost:3000/user/${user.email}`);
         return res.data;
       } catch (error) {
         console.error("Error fetching user data:", error);

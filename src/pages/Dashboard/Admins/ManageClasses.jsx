@@ -53,6 +53,9 @@ const ManageClasses = () => {
       }
     });
   }
+  const handleFeedback = () => {
+console.log(first)
+  }
   const handleChange = (event,value) => {
     setPage(value)
   }
@@ -145,11 +148,14 @@ const ManageClasses = () => {
                                 Deny
                               </button>
                               <button
-                                disabled={cls.status === "rejected" || cls.status === "checking"}
-                                onClick={() => handleReject(cls._id)}
-                                className='cursor-pointer bg-red-600 py-1 rounded-md px-2 text-white'
+                                // disabled={cls.status === "rejected" || cls.status === "checking"}
+                                // onClick={() => handleReject(cls._id)}
+                                // className='cursor-pointer bg-red-600 py-1 rounded-md px-2 text-white'
+                                
                               >
-                                Feedback
+                                <span onClick={() =>navigate(`/dashboard/feedback-user/`,{state: {userId: cls._id}} )} className='inline-flex items-center gap-2 bg-green-400  cursor-pointer
+                           text-black rounded-md px-2 font-bold'> Feedback </span>
+                                
                               </button>
                               
                             </td>

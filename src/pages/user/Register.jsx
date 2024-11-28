@@ -36,7 +36,7 @@ const Register = () => {
             address: data.address
           }
           if(user.email && user.displayName) {
-            return axios.post(`https://mma-server-x3l2.onrender.com/new-user`
+            return axios.post(`http://localhost:3000/new-user`
 
 , userImp).then(()=> {
               navigate('/')
@@ -126,8 +126,8 @@ const Register = () => {
                 <select {...register("gender", {required: true})} className='w-full border border-gray-300
                  rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300'>
                   <option value="" disabled selected>Select gender</option>
-        <option value="female">female</option>
-        <option value="male">male</option>
+        <option value="female">male</option>
+        <option value="male">female</option>
         <option value="other">gay(не желетельно)</option>
       </select>
                 </div>
