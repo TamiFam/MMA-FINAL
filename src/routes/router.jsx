@@ -128,10 +128,10 @@ export const router = createBrowserRouter([
         path: 'manage-users',
         element: <ManageUsers />
       },
-      {
-        path: 'feedback-user',
-        element: <FeedbackUser />
-      },
+      // {
+      //   path: 'feedback-user',
+      //   element: <FeedbackUser />
+      // },
       {
         path: 'update-user/:id',
         element: <UpdateUser />,
