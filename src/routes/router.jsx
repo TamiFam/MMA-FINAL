@@ -25,7 +25,13 @@ import AddClass from "../pages/Dashboard/instructor/AddClass";
 import ManageUsers from "../pages/Dashboard/Admins/ManageUsers";
 import UpdateUser from "../pages/Dashboard/Admins/UpdateUser";
 import ManageAplication from "../pages/Dashboard/Admins/ManageAplication";
-import FeedbackUser from "../pages/Dashboard/Admins/feedbackUser";
+import VipAdmin from "../pages/Dashboard/VipAdmin/VipAdminCp";
+import VipAdminCp from "../pages/Dashboard/VipAdmin/VipAdminCp";
+import BanUsers from "../pages/Dashboard/VipAdmin/BanUsers";
+import RightSidebar from "../layout/RightSidebar";
+// import FeedbackUser from "../pages/Dashboard/Admins/feedbackUser";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +61,7 @@ export const router = createBrowserRouter([
       {
         path: "/class/:id",
         element: <SingleClass />,
-        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com/
+        loader: ({ params }) => fetch(`https://mma-server-x3l2.onrender.com
 
 /class/${params.id}`)
       },
@@ -69,10 +75,20 @@ export const router = createBrowserRouter([
         index: true,
         element: <Dashboard />
       },
+      //Vip admin routes
+      
       // students routes
       {
         path: 'student-cp',
-        element: <StudentCP />
+        element: <StudentCP />,
+        children: [
+          {
+            path: "",
+            element: <RightSidebar />, // Добавляем компонент справа
+            outlet: "rightSidebar", // Указываем имя outlet
+          },
+        ],
+      
       },
       {
         path: 'enrolled-class',
@@ -120,6 +136,7 @@ export const router = createBrowserRouter([
         path: 'admin-home',
         element: <AdminCP />
       },
+     
       {
         path: 'manage-class',
         element: <ManageClasses />
@@ -143,7 +160,20 @@ export const router = createBrowserRouter([
         path: 'manage-application',
         element: <ManageAplication />
       },
-      AdminStats
+      AdminStats,
+
+      // VIP ADMIN
+      {
+        path: 'vipAdmin-home',
+        element: <VipAdminCp />
+      },AdminStats,
+     
+      {
+        path: 'ban-users',
+        element: < BanUsers/>
+      },
+     
+      
     ]
   }
 ]);

@@ -7,6 +7,10 @@ export default {
   darkMode: 'class', 
   theme: {
     extend: {
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+        'spin-fast': 'spin 0.5s linear infinite',
+      },
       fontSize: {
         '11px': '11px',
         '14px':'14px'

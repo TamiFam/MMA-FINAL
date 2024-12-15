@@ -27,7 +27,7 @@ const MyPaymentHistory = () => {
   useEffect(()=> {
     axiosFetch.get(`/payment-history/${currentUser.email}`)
     .then((res)=> {
-      console.log(res.data)
+      // console.log(res.data)
       setPayments(res.data)
 
     }).catch((err)=>console.log(err))
@@ -36,7 +36,7 @@ const MyPaymentHistory = () => {
 
   return (
     <div className='text-left mr-25 text-2xl'>
-      <p className='text-center text-secondary font-bold'>{currentUser.name}</p>
+      <p className='text-center text-secondary font-bold'></p>
       <div>
       <div>
         {payments.map((payment) => (

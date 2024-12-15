@@ -80,7 +80,7 @@ const googleLogin = async () => {
 useEffect(() => {
 const unsubscribe = onAuthStateChanged(auth,(user) => {
   setUser(user)
-  console.log("User from Firebase:", user)
+  // console.log("User from Firebase:", user)
   if(user) {
     
     axios.post(`https://mma-server-x3l2.onrender.com/api/set-token`

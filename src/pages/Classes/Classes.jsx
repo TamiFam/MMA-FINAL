@@ -24,7 +24,12 @@ const Classes = () => {
     }).catch(err => console.log(err))
     
   },[])
-  
+  useEffect(() => {
+    axiosSecure.get('/checkDuplicateClasses').then(res => { 
+      
+    }).catch(err => console.log(err))
+
+  },[])
 
   const handleHover = (index) => {
     
@@ -228,8 +233,8 @@ function getCorrectEnding(number) {
                 leaveTo="opacity-0"
               >
                 <div className='absolute inset-0 flex items-center justify-center'>
-                  <button onClick={() => handleSelect(cls._id)} title={role === 'admin' || role === 'instructor' ? 'Instructor/Admin cannot select' : cls.availableSeats < 1 ? 'No seat Available' : 'You can select Classes'}
-                    disabled={role === 'admin' || role === 'instructor' || cls.availableSeats < 1  }
+                  <button onClick={() => handleSelect(cls._id)} title={role === 'admin' || role === 'instructor' || role ==='vip-admin' ? 'Instructor/Admin cannot select' : cls.availableSeats < 1 ? 'No seat Available' : 'You can select Classes'}
+                    disabled={role === 'admin' || role === 'instructor'|| role ==='vip-admin' || cls.availableSeats < 1  }
                     className='px-4 py-2 text-white disabled:bg-red-300 bg-secondary duration-300 rounded hover:bg-red-700 '>
                     Add to card
                   </button>

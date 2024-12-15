@@ -1,81 +1,43 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useAxiosFetch from '../../../hooks/useAxiosFetch'
+
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import Pagination from '@mui/material/Pagination';
 import { MdDeleteForever } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
 import { AuthContext } from '../../../ultilites/providers/AuthProvider';
-import Swal from 'sweetalert2';
 
-const ManageUsers = () => {
+const BanUsers = () => {
     // const { deleteUserFromFirestore } = useContext(AuthContext);
     const navigate = useNavigate()
-    const axiosFetch = useAxiosFetch()
+    
     const axiosSecure = useAxiosSecure()
     const [users,setUsers] = useState([])
     const [page, setPage] = useState(1)
     const [paginateData, setPaginateData] = useState([])
     const itemPerPage = 2
    
-   
     
     const totalPage = Math.ceil(users.length / itemPerPage)
     const handleChange = (event,value) => {
         setPage(value)
     }
-    const handleDelete = async (id, role) => {
-      if (role === 'vip-admin') {
-        Swal.fire({
-          icon: "error",
-          text: "Нельзя банить босса",
-        });
-      } else if (role === 'admin') {
-        Swal.fire({
-          icon: "error",
-          text: "Нельзя банить коллег",
-        });
-        if (id) {
-          Swal.fire({
-            icon: "error",
-            text: "Нельзя банить себя",
-          });
-      }
-      } else {
+    const handleDelete = async (id) => {
+        
+      
         try {
           await axiosSecure.delete(`/delete-user/${id}`);
-          await deleteUserFromFirestore(id);
+        //   await deleteUserFromFirestore(id);
           setUsers(prevUsers => prevUsers.filter(user => user._id !== id));
           alert('deleted');
         } catch (err) {
           console.log(err);
         }
-      }
-    };
-      const handleUpdate = (id,role) => {
-        if(role === 'vip-admin') {
-          Swal.fire({
-            icon: "error",
-            
-            text: "Нельзая изменять боссу",
-            
-          });
-          return
-        } 
-        navigate(`/dashboard/update-user/${id}`)
-      }
+      };
     useEffect(() => {
         axiosSecure.get('/users').then(res => {
-          const sortedUsers = res.data.sort((a, b) => {
-            if (a.role === 'vip-admin') return -1;
-            if (b.role === 'vip-admin') return 1;
-            if (a.role === 'admin') return -1;
-            if (b.role === 'admin') return 1;
-            if(a.role === 'instructor') return -1
-            if(b.role === 'instructor') return 1
-            return 0;
-        });
-            setUsers(sortedUsers)
+            
+            setUsers(res.data)
            
         }).catch(err => console(err))
     },[])
@@ -145,11 +107,11 @@ const ManageUsers = () => {
                           </td> */}
                          
                           <td className='  whitespace-nowrap px-6 py-4 font-bold' >
-                          <span onClick={() =>handleUpdate(user._id, user.role)} className='inline-flex items-center gap-2 bg-green-400  cursor-pointer
+                          <span onClick={() =>navigate(`/dashboard/update-user/${user._id}`)} className='inline-flex items-center gap-2 bg-green-400  cursor-pointer
                            text-black rounded-md px-2 font-bold'>Update <GrUpdate className='text-black' /> </span>
                           </td> 
                           <td className='  whitespace-nowrap px-6 py-4 font-bold' >
-                          <span onClick={() =>handleDelete(user._id,user.role)}className='inline-flex items-center gap-2 bg-red-400  cursor-pointer
+                          <span onClick={() =>handleDelete(user._id)}className='inline-flex items-center gap-2 bg-red-400  cursor-pointer
                            text-white  rounded-md px-2'>Delete <MdDeleteForever className='text-black' /></span>
                           </td> 
                           
@@ -176,4 +138,4 @@ const ManageUsers = () => {
 )
 }
 
-export default ManageUsers
+export default BanUsers

@@ -10,7 +10,7 @@ const UpdateUser = () => {
   const {currentUser}  = useUser()
     const userCredentials = useLoaderData()
     const [image, setImage] = useState()
-    console.log(userCredentials)
+    // console.log(userCredentials)
     const {
       register,
       
@@ -37,7 +37,7 @@ const UpdateUser = () => {
         if(res.modifiedCoun > 0 )
         console.log(res.data)
         alert('Updated info')
-        console.log(res.data)
+        // console.log(res.data)
       })
         .catch((err) => console.log(err))
       

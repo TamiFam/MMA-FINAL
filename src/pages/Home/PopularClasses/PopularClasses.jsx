@@ -13,7 +13,7 @@ const PopularClasses = () => {
     const fetchClasses = async() => {
       const response = await axiosFetch.get('/classes')
       setClasses(response.data)
-      console.log(response )  
+      // console.log(response )  
     }
     fetchClasses()
   }, [])

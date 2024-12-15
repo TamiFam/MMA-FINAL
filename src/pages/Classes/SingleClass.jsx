@@ -280,8 +280,8 @@ const SingleClass = () => {
                   </div>
                   <div className='flex justify-center'>
                     
-                  <button  onClick={() => handleSelect(course._id)} title={role === 'admin' || role === 'instructor' ? 'Instructor/Admin cannot select' : course.availableSeats < 1 ? 'No seat Available' : 'You can select Classes'}
-                    disabled={role === 'admin' || role === 'instructor' || course.availableSeats < 1} className=' text-black dark:text-white bg-secondary items-center py-3  px-20 rounded-md'>
+                  <button  onClick={() => handleSelect(course._id)} title={role === 'admin' || role === 'instructor'|| role === 'vip-admin' ? 'Instructor/Admin cannot select' : course.availableSeats < 1 ? 'No seat Available' : 'You can select Classes'}
+                    disabled={role === 'admin' || role === 'instructor' || role === 'vip-admin' || course.availableSeats < 1} className=' text-black dark:text-white bg-secondary items-center py-3  px-20 rounded-md'>
                     Enroll Now
                   </button>
                   </div>

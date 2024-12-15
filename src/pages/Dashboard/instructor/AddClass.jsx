@@ -13,7 +13,7 @@ const AddClass = () => {
   const {currentUser}  = useUser()
   const handleFormSubmit = (e) => {
     
-    e.preventDefault()
+    e.preventDefault()  
     const formData = new FormData(e.target);
     // console.log(formData)
     const newData = Object.fromEntries(formData)
@@ -38,6 +38,7 @@ const AddClass = () => {
         
         axiosSecure.post('/new-class',newData).then(res => {
           console.log(res.data)
+          alert('Course added ')
         }).catch(err =>console.log(err))
       }
     })

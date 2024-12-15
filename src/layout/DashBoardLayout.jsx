@@ -22,7 +22,13 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { IoMdDoneAll } from "react-icons/io";
 import Scroll from '../hooks/useScroll'
 import { HashLoader } from 'react-spinners'
-
+const vipAdminNavItems = [
+  {to: "/dashboard/vipAdmin-home", icon: <BiHomeAlt className=" text-2xl" />, label: "Dashboard Home"},
+  {to: "/dashboard/ban-users", icon: <FaUsers className=" text-2xl" />, label: "Ban Users"},
+  {to: "/dashboard/manage-class", icon: <BsFillPostcardFill className=" text-2xl" />, label: "Manage Class"},
+  // {to: "/dashboard/manage-application", icon: <TbBrandAppleArcade className=" text-2xl" />, label: "Manage Application"},
+  
+]
 const adminNavItems = [
   {to: "/dashboard/admin-home", icon: <BiHomeAlt className=" text-2xl" />, label: "Dashboard Home"},
   {to: "/dashboard/manage-users", icon: <FaUsers className=" text-2xl" />, label: "Manage Users"},
@@ -106,6 +112,22 @@ if(isLoading) {
           </Link>
         </div>
         {/*NavLinks menu */}
+                {/*VIPamin role */}
+                {role ==="vip-admin" && (<ul className='pt-6'>
+            <p className={`ml-3 text-gray-400 ${!open && "hidden"}`}><small>Menu</small></p>
+            {
+               role ==="vip-admin" &&  vipAdminNavItems.map((menuItem, index) => (
+                <li key={index} className='mb-2'>
+                 <NavLink to={menuItem.to} className={({ isActive }) => `flex flex-row items-center ${isActive ? "bg-red-500 text-white" : "text-[#413F44]"}
+                  duration-150 rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-white font-bold text-sm gap-x-4 whitespace-nowrap md:w`}>
+                  {menuItem.icon}
+                  <span className={`${!open && 'hidden'} origin-left duration-200` }>{menuItem.label}</span>
+                  </NavLink>
+                </li>
+               ))
+            }
+          </ul>
+        )}
                  {/*admin roles */}
         {role ==="admin" && (<ul className='pt-6'>
             <p className={`ml-3 text-gray-400 ${!open && "hidden"}`}><small>Menu</small></p>
