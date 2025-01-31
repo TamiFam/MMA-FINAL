@@ -4,7 +4,7 @@ import useUser from '../../../hooks/useUser'
 import { Link, Outlet } from 'react-router-dom'
 import UserRoleBadge from '../../../roles/UserRoleBadge'
 import UserRoleAnimation from '../../../roles/UserRoleAnimation'
-import RightSidebar from '../../../layout/RightSidebar'
+// import RightSidebar from '../../../layout/RightSidebar'
 
 const StudentCP = () => {
   const {currentUser} = useUser()

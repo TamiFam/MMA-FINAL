@@ -82,11 +82,11 @@ export const router = createBrowserRouter([
         path: 'student-cp',
         element: <StudentCP />,
         children: [
-          {
-            path: "",
-            element: <RightSidebar />, // Добавляем компонент справа
-            outlet: "rightSidebar", // Указываем имя outlet
-          },
+          // {
+          //   path: "",
+          //   element: <RightSidebar />, // Добавляем компонент справа
+          //   outlet: "rightSidebar", // Указываем имя outlet
+          // },
         ],
       
       },
