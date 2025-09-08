@@ -8,7 +8,7 @@ import { HashLoader } from 'react-spinners';
 const PopularClasses = () => {
   const axiosFetch = useAxiosFetch()
   const [classes, setClasses] = useState([])
-  const {currentUser, isLoading} = useUser()
+  // const {currentUser, isLoading} = useUser()
   useEffect(() => {
     const fetchClasses = async() => {
       const response = await axiosFetch.get('/classes')
@@ -18,9 +18,9 @@ const PopularClasses = () => {
     fetchClasses()
   }, [])
   // console.log(classes)
-  if(isLoading) {
-    return <div className='flex justify-center items-center h-screen'><HashLoader color="#f40dcf" /></div>
-  }
+  // if(isLoading) {
+  //   return <div className='flex justify-center items-center h-screen'><HashLoader color="#f40dcf" /></div>
+  // }
   return (
     <div className='w-full h-full'>
     <div className='md:w-[80%] mx-auto my-36'>
