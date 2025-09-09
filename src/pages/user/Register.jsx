@@ -36,10 +36,10 @@ const Register = () => {
             address: data.address
           }
           if(user.email && user.displayName) {
-            return axios.post(`http://localhost:3000/new-user`
+            return axios.post(`https://mma-server-x3l2.onrender.com/new-user`
 
 , userImp).then(()=> {
-  navigate('https://mma-final-ff.onrender.com/')
+              navigate('/')
               return "Registration done"
             }).catch((err)=> {
               throw new Error(err)
