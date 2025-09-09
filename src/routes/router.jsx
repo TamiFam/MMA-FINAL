@@ -28,7 +28,7 @@ import ManageAplication from "../pages/Dashboard/Admins/ManageAplication";
 import VipAdmin from "../pages/Dashboard/VipAdmin/VipAdminCp";
 import VipAdminCp from "../pages/Dashboard/VipAdmin/VipAdminCp";
 import BanUsers from "../pages/Dashboard/VipAdmin/BanUsers";
-import RightSidebar from "../layout/RightSidebar";
+// import RightSidebar from "../layout/RightSidebar";
 // import FeedbackUser from "../pages/Dashboard/Admins/feedbackUser";
 
 

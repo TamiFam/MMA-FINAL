@@ -39,7 +39,7 @@ const Register = () => {
             return axios.post(`http://localhost:3000/new-user`
 
 , userImp).then(()=> {
-              navigate('/')
+  navigate('https://mma-final-ff.onrender.com/')
               return "Registration done"
             }).catch((err)=> {
               throw new Error(err)
